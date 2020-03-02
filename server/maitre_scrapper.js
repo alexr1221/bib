@@ -36,17 +36,19 @@ const parse = data => {
  * @param  {String}  url
  * @return {Object} restaurant
  */
-module.exports.scrapeProfiles = async url => {
+module.exports.getRestaurantList = async () => {
+
+    var url = "https://www.maitresrestaurateurs.fr/annuaire/ajax/loadresult";
 
     var page_index = 1;
     var all_restaurants = [];
     var wasLastPageAvailable = true;
     var wasLastPageEmpty = false;
 
-    while (wasLastPageAvailable || !wasLastPageEmpty) {
+    while (wasLastPageAvailable && !wasLastPageEmpty) {
         if (page_index > 1) {
         }
-        console.log(url);
+        console.log(url + " - page: " + page_index);
         const payload = {
             'page': page_index.toString(),
             'request_id':'d0005dff95c739e6c4f82222fb70a8f5'
