@@ -66,12 +66,17 @@ module.exports.getRestaurantList = async () => {
         console.log(url + " - page: " + page_index);
         const payload = {
             'page': page_index.toString(),
-            'request_id':'d0005dff95c739e6c4f82222fb70a8f5'
+            'request_id': 'd0005dff95c739e6c4f82222fb70a8f5',
         };
         const config = {
             method: 'post',
             url: url,
-            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'charset': 'ISO-8859-1',
+                'Content-Encoding': 'gzip'
+            },
             data: querystring.stringify(payload)
         }
         const response = await axios(config);

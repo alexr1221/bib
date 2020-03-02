@@ -12,12 +12,21 @@ module.exports.saveToJson = (file_name, data) => {
         }
 }
 
-function download(text, name, type) {
-    var a = document.getElementById("a");
-    var file = new Blob([text], { type: type });
-    a.href = URL.createObjectURL(file);
-    a.download = name;
+module.exports.loadJson = (file_name) => {
+    try {
+        return fs.readFileSync(file_name);
+    } catch (e) {
+        console.error(e);
+        process.exit(1);
+    }
 }
+
+//function download(text, name, type) {
+//    var a = document.getElementById("a");
+//    var file = new Blob([text], { type: type });
+//    a.href = URL.createObjectURL(file);
+//    a.download = name;
+//}
 
 //<a href="" id="a">click here to download your file</a>
 //    <button onclick="download('file text', 'myfilename.txt', 'text/plain')">Create file</button>
