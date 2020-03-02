@@ -45,8 +45,14 @@ const parse = data => {
             if (res_name.length == 0) { // some restaurants don't have a name
                 res_name = '[no name]';
             }
-            restaurants.push(res_name);
-            console.log(res_name + "-" + res_city);
+
+            var res_final = {
+                name: res_name,
+                city: res_city
+            };
+
+            restaurants.push(res_final);
+            console.log(res_name + " - " + res_city);
             elementCount_t++;
         }
     });

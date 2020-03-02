@@ -6,7 +6,6 @@ module.exports.saveToJson = (file_name, data) => {
         var str_file = JSON.stringify(data);
         fs.writeFileSync(file_name, str_file);
         console.log("saved!");
-        process.exit(0);
     } catch (e) {
                 console.error(e);
             process.exit(1);

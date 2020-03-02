@@ -13,16 +13,31 @@ const parse = data => {
     var elementCount_t = 0;
     $("body > div.col-md-9 > div.annuaire_result_list").children().each(function (index, element) {
         var res_name = $("div.single_libel > a", element).text();
-        res_name = res_name.substr(13); // remove spaces before the name
-        var res_name_length = res_name.length;
-        if (res_name_length != 0) { // check if name is not empty
+        var res_infos = $("div.single_desc > div.single_details > div > div:nth-child(2) > div", element).text();
+
+        if (res_name.length != 0) { // check if name is not empty
             var index_end_of_name = res_name.indexOf('(') - 1;
             res_name = res_name.substr(0, index_end_of_name);
             if (res_name.length == 0) { // some restaurants don't have a name
                 res_name = '[no name]';
             }
-            restaurants.push(res_name);
-            console.log(res_name);
+
+            var res_city__zip_city = res_infos.split('\n')[4]; // select last line
+            res_city__zip_city = res_city__zip_city.substr(14); // removes unnecessay spaces
+            var res_city__zip_city_tab = res_city__zip_city.split(' '); // split zip and city with spaces
+            var res_zip = res_city__zip_city_tab[0];
+            res_city__zip_city_tab.splice(0, 1); // removes zip
+            var res_city = res_city__zip_city_tab.join(' ');
+            res_name = res_name.substr(13); // remove spaces before the name
+
+            var res_final = {
+                name: res_name,
+                city: res_city,
+                zip: res_zip
+            };
+
+            restaurants.push(res_final);
+            console.log(res_name + "-" + res_city + "-" + res_zip);
             elementCount_t++;
         }
     });
