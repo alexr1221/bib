@@ -30,6 +30,7 @@ const parse = data => {
             var res_city = res_city__zip_city_tab.join(' ');
             res_name = res_name.substr(13); // remove spaces before the name
 
+
             var res_final = {
                 name: res_name,
                 city: res_city,

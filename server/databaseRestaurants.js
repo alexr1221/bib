@@ -14,7 +14,7 @@ module.exports.saveToJson = (file_name, data) => {
 
 module.exports.loadJson = (file_name) => {
     try {
-        return fs.readFileSync(file_name);
+        return JSON.parse(fs.readFileSync(file_name, "utf8"));
     } catch (e) {
         console.error(e);
         process.exit(1);

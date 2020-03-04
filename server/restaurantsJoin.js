@@ -8,8 +8,9 @@ module.exports.process = () => {
 
     for (var i = 0; i < restaurants_maitre.length; i++) {
         for (var j = 0; j < restaurants_bib.length; j++) {
-            if (restaurants_maitre[i].name.toLowerCase()
-                == restaurants_bib[j].name.toLowerCase()) {
+
+            if ((restaurants_maitre[i].name.toLowerCase() == restaurants_bib[j].name.toLowerCase())
+                && (restaurants_maitre[i].city.toLowerCase() == restaurants_bib[j].city.toLowerCase())) {
                 var newRow = {
                     name: restaurants_bib[j].name,
                     city: restaurants_bib[j].city
@@ -18,4 +19,5 @@ module.exports.process = () => {
             }
         }
     }
+    database.saveToJson("allRestaurantsJoin.json", joinResult);
 }
